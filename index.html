@@ -29,24 +29,34 @@
 	#canvas {
 		display: block;
 		margin: 0px auto;
-    float:right;
-    
+    float: right;
     width: auto;
     height: auto;
   }
-	#all-line{
-    font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;
-    font-size:21px;
-    text-transform:uppercase;
+  .text-area-holder{
     padding:0.92em 0.72em;
-    text-align:center; 
+    box-sizing: border-box;/**/
     width: calc(100% - 1% - 1% - 1% - 1%);
     right: 1%;
     left: 1%;
     top: 1%;
-    bottom:1%;
+    bottom:20%;
     position: absolute;
-    box-sizing: border-box;
+    overflow:hidden;
+  }
+  #all-line{
+    
+    font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;
+    font-size:21px;
+    text-transform:uppercase;
+    text-align:center; 
+    margin:0px auto;
+    resize: vertical;
+    min-width:329px;
+    min-height: 46px;
+    max-height: 95%;
+    float: right;
+    display: block;
   }
 	#all-line::-webkit-input-placeholder {
 		font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;text-transform:none;text-align:left;
@@ -166,14 +176,14 @@
     -webkit-transition: width 0.5s, height 0.5s, background-color 0.5s, -webkit-transform 0.5s, left 0.5s, right 0.5s;
     transition: width 0.5s, height 0.5s, background-color 0.5s, transform 0.5s, left 0.5s, right 0.5s;
   }
-  .textarea-wrapper{left:75%;right:0px;}
-  .canvas-wrapper{left:0%;right:25%;}
-  html.input-mode .textarea-wrapper{left:50%;right:0px;}
-  html.input-mode .canvas-wrapper{left:0%;right:50%;}
-
+  .canvas-wrapper{left:33%;right:0px;}
+  .textarea-wrapper{left:0%;right:66.6%;max-height:498px;}
+  html.input-mode .textarea-wrapper{left:0px;right:50%;}
+  html.input-mode .canvas-wrapper{left:50%;right:0px;}
+  /*html.input-mode .text-area-holder{margin:0px 0px 0px auto;}*/
   html.input-mode #canvas {
     display: block;
-    margin: 0px auto;   
+    margin: 0px auto;
     right: 0px;
     position: absolute;
   }
@@ -354,9 +364,9 @@ $(document).ready(function() {
   	<!-- <input id="top-line" placeholder="top line">
   	<input id="bottom-line" placeholder="bottom line"> -->
     <main>
+     <section class="textarea-wrapper"><div class="text-area-holder"><textarea id="all-line" placeholder="Enter Your Text">MAKE AMERICA 
+GREAT AGAIN</textarea></div></section>
       <section class="canvas-wrapper"><canvas id="canvas"></canvas></section>
-     <section class="textarea-wrapper"><textarea id="all-line" placeholder="Enter Your Text">MAKE AMERICA 
-GREAT AGAIN</textarea></section>
     </main>
     <div class="save-button-wrapper">
       <button>Save</button>
