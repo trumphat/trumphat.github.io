@@ -2,203 +2,17 @@
 <html>
 <head>
 
-	<title>Meme.js demo</title>
+  <title>Donald Trump Hat Generator</title>
 
-	<!-- Demo CSS -->
-	<style>
+  <!-- Demo CSS -->
+  <link href="css.css" rel="stylesheet" type="text/css" />
 
-  html {
-    font-size: 10px;
-    line-height: 1.1;
-  }
-  body {
-    font-family: sans-serif;
-    text-align: center;
-  }
+  <!-- Meme script -->
+  <script src="meme.js"></script>
 
-  html,  body {padding:0px;margin:0px;width:100%;height:100%;}
-  html.has-touch .click-msg{display:none;}
-  html.has-click .tap-msg{display:none;}
-
-	#top-line, #bottom-line {
-		padding: .5em;
-		border: 1px solid #999;
-		font: inherit;
-	}
-
-	#canvas {
-		display: block;
-		margin: 0px auto;
-    float: right;
-    width: auto;
-    height: auto;
-  }
-  .text-area-holder{
-    padding:0.92em 0.72em;
-    box-sizing: border-box;/**/
-    width: calc(100% - 1% - 1% - 1% - 1%);
-    right: 1%;
-    left: 1%;
-    top: 1%;
-    bottom:20%;
-    position: absolute;
-    overflow:hidden;
-  }
-  #all-line{
-    
-    font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;
-    font-size:21px;
-    text-transform:uppercase;
-    text-align:center; 
-    margin:0px auto;
-    resize: vertical;
-    min-width:329px;
-    min-height: 46px;
-    max-height: 95%;
-    float: right;
-    display: block;
-  }
-	#all-line::-webkit-input-placeholder {
-		font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;text-transform:none;text-align:left;
-	}
-
-	#all-line:-ms-input-placeholder {
-		font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;text-transform:none;text-align:left;
-	}
-
-	#all-line:-moz-placeholder {
-		font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;text-transform:none;text-align:left;
-	}
-
-	#all-line::-moz-placeholder {
-		font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;text-transform:none;text-align:left;
-	}
-  .save-button-wrapper,.credits{
-    padding: 0.3rem 1.2rem 0.6rem;
-  }
-  .save-button-wrapper{
-    position:fixed;
-    bottom:0px;
-    right:0px;
-    z-index:9;
-    padding:0rem 1.2rem 1.2rem;
-  }
-  .save-button-wrapper button{
-    min-height:35px;
-    font-size:2.8rem;
-    text-transform:uppercase;
-    font-size: 3.8rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    padding: 0.75rem 2.5rem;
-  }
-  .credits{
-    position:fixed;
-    bottom:0px;
-    left:0px;
-    z-index:9001;
-    background-color:#ffffff;
-    opacity:0.6;
-  }
-  .credits p{
-    font-size: 1.12rem;
-    line-height: 1.05;
-    text-align:right;
-    margin: 0.23rem auto;
-  }
-  .ui-msg p{
-    background-color: rgba(60,60,60,0.4);
-    border-radius: 50%;
-    border-color: transparent;
-  }
-  .as-tbl{display: table;}
-  .as-tcl{display: table-cell;width:100%;height:100%;}
-  .as-tcl,.as-tbl{
-    text-align:center;
-    vertical-align: middle;
-  }
-  .ui-msg{
-    text-decoration:none;
-    text-transform: uppercase;
-    font-size:1.75rem;
-    /*font-family: 'Droid Sans', sans-serif;
-    font-family: 'Open Sans', sans-serif;*/
-    font-family: Arial, sans-serif;
-    background-color: rgba(255,255,255,0.7);
-    color:#D8D8D8;
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    z-index:9000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .ui-msg div{
-    border-radius:50%;
-    width:175px;
-    height:175px;
-    position: relative;
-  }
-  .ui-msg p:after,
-  .ui-msg p:before,
-  .ui-msg:after,
-  .ui-msg:before{
-    content: " ";
-    display: block;
-  }
-  .ui-msg:after{
-    background-color:#00ff00;
-  }
-  .ui-msg:before{
-    background-color:#00ffff;
-  }
-  .ui-msg p:after{
-    background-color:#99BB33;
-  }
-  .ui-msg p:before{
-    width: 80%;
-    height: 80%;
-    border: 6px dotted #EFEFEF;
-    border-radius: 50%;
-    position: absolute;
-    top: calc(10% - 6px);
-    left: calc(10% - 6px);
-  }
-  main{position:relative;width:100%;height:100%;overflow:hidden;}
-  .textarea-wrapper,
-  .canvas-wrapper{
-    position:absolute;top:0px;bottom:100px;overflow:hidden;
-
-    -webkit-transition: width 0.5s, height 0.5s, background-color 0.5s, -webkit-transform 0.5s, left 0.5s, right 0.5s;
-    transition: width 0.5s, height 0.5s, background-color 0.5s, transform 0.5s, left 0.5s, right 0.5s;
-  }
-  .canvas-wrapper{left:33%;right:0px;}
-  .textarea-wrapper{left:0%;right:66.6%;max-height:498px;}
-  html.input-mode .textarea-wrapper{left:0px;right:50%;}
-  html.input-mode .canvas-wrapper{left:50%;right:0px;}
-  /*html.input-mode .text-area-holder{margin:0px 0px 0px auto;}*/
-  html.input-mode #canvas {
-    display: block;
-    margin: 0px auto;
-    right: 0px;
-    position: absolute;
-  }
-  @media only screen and (max-width: 700px){
-  }
-  @media only screen and (max-width: 700px){
-  }
-	</style>
-
-	<!-- Meme script -->
-	<script src="meme.js"></script>
-
-	<!-- Demo scripts -->
-	<script src="jquery.js"></script>
-	<script>/* jQuery-FontSpy.js v3.0.0
+  <!-- Demo scripts -->
+  <script src="jquery.js"></script>
+  <script>/* jQuery-FontSpy.js v3.0.0
  * https://github.com/patrickmarabeas/jQuery-FontSpy.js
  *
  * Copyright 2013, Patrick Marabeas http://pulse-dev.com
@@ -287,7 +101,7 @@
     checkFont();
     }
   })( this, jQuery );
-	$.fn.ready(function() {
+  $.fn.ready(function() {
 var preview_timeout_id=false;
 $(document).ready(function() {
   $('html').addClass(('ontouchstart' in window || navigator.maxTouchPoints?'has-touch':'has-click'));
@@ -302,12 +116,12 @@ $(document).ready(function() {
     $('#all-line').select();
     $(this).remove();
   });
-	fontSpy('Libre Baskerville', {	  
-		success: function(){
-			Meme('donald_796.jpg', 'canvas');
+  fontSpy('Libre Baskerville', {    
+    success: function(){
+      Meme('donald_796.jpg', 'canvas');
 
 
-      $('.save-button-wrapper button').on('click',function(){
+      $('button.save-btn').on('click',function(){
         var canvas = $('#canvas')[0],
             image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"),  // here is the most important part because if you dont replace you will get a DOM 18 exception.
             link = document.createElement('a'),/// create an "off-screen" anchor tag
@@ -334,7 +148,7 @@ $(document).ready(function() {
             link.fireEvent("onclick");
         }
       });
-			$('#all-line').keyup(function() {
+      $('#all-line').keyup(function() {
         if(preview_timeout_id!==false){clearTimeout(preview_timeout_id);}
         preview_timeout_id=setTimeout(function(){
 
@@ -342,16 +156,16 @@ $(document).ready(function() {
           Meme('donald_796.jpg', 'canvas', $('#all-line').val().toUpperCase());
           //Meme('donald_796.jpg', 'canvas', $('#all-line').val());
         },300);
-			});
-			$('#all-line').keyup();
-		}
-	});
+      });
+      $('#all-line').keyup();
+    }
+  });
 
 });
 
-	});
+  });
 
-	</script>
+  </script>
 
 <!-- <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'> -->
 <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700|Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
@@ -361,16 +175,17 @@ $(document).ready(function() {
   <a href="javascript:;" class="ui-msg"><div class="as-tbl"><p class="as-tcl"><span class="tap-msg">Tap</span><span class="click-msg">Click</span> to<br/>Customize</p></div></a>
 
   
-  	<!-- <input id="top-line" placeholder="top line">
-  	<input id="bottom-line" placeholder="bottom line"> -->
+    <!-- <input id="top-line" placeholder="top line">
+    <input id="bottom-line" placeholder="bottom line"> -->
     <main>
-     <section class="textarea-wrapper"><div class="text-area-holder"><textarea id="all-line" placeholder="Enter Your Text">MAKE AMERICA 
-GREAT AGAIN</textarea></div></section>
+     <section class="textarea-wrapper">
+        <div class="text-area-holder"><textarea id="all-line" placeholder="Enter Your Text">MAKE AMERICA 
+GREAT AGAIN</textarea>
+        </div>
+        <div class="save-button-wrapper"><button class="save-btn">Save</button></div>
+</section>
       <section class="canvas-wrapper"><canvas id="canvas"></canvas></section>
     </main>
-    <div class="save-button-wrapper">
-      <button>Save</button>
-    </div>
     <div class="credits">
       <p>Original Image Credit by Rick Wilking / Reuters</p>
       <p>Github Forked: <a href="https://github.com/BuddyMeme/Meme.js" target="_blank">Meme.js</a></p>
