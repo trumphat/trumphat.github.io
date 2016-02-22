@@ -161,7 +161,8 @@ $(document).ready(function() {
           //Meme('donald_796.jpg', 'canvas', $('#all-line').val());
         },300);
       });
-      $('#all-line').keyup();
+      setTimeout(function(){$('#all-line').keyup();},600);//initate! - for buggy loads
+      $('#all-line').keyup();//initate!
     }
   });
 
