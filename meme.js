@@ -194,12 +194,12 @@ window.Meme = function(image, canvas, top, bottom) {
 			y_init=y,
 			lineHeight=LH * FS,
 			recDepth=(typeof(recDepth)!=='number'?0:recDepth);
-
+/*
 console.log('============maxHeight ',maxHeight,'========================');
 console.log('============lineHeight ',lineHeight,'========================');
 console.log('============FS ',FS,'========================');
 console.log('============textIn ',textIn,' x ',x,' y ',y,'========================');
-
+*/
 		if(!maxWidth){maxWidth=gMaxWidth;}
 		if(!maxHeight){maxHeight=gMaxHeight;}
 		var punct='\\['+ '\\!'+ '\\"'+ '\\#'+ '\\$'+   // since javascript does not http://stackoverflow.com/questions/6162600/how-do-you-split-a-javascript-string-by-spaces-and-punctuation
@@ -229,18 +229,20 @@ console.log('============textIn ',textIn,' x ',x,' y ',y,'======================
 			count=0,
 			prev_width=0,
 			x_mod=(context.textAlign.toLowerCase()==='center'?maxWidth/2:0);
-
+/*
 console.log('word_obj: ',word_obj);
+*/
 		for(var n = 0; n < word_obj.length; n++) {
 			//var testLine = line + word_obj[n].str + ' ',
 			var testLine = line + word_obj[n].str +  word_obj[n].sep,
 				metrics = context.measureText(testLine),
 				testWidth = metrics.width;
+/*
 console.log(n,' - FOR ===(word_obj.length-1)['+(word_obj.length-1)+']: word_obj[n] ',word_obj[n],"\n",
 	testWidth,' > ',maxWidth,"?",(testWidth > maxWidth?"TRUE":"FALSE"),"\n",
 	'word_obj[n].sep===\\n',"?",(word_obj[n].sep==="\n"?"TRUE":"FALSE"),"\n",
 	'prev_width: ',prev_width,
-"");
+"");*/
 
 			if ((testWidth > maxWidth && n > 0) || word_obj[n].sep==="\n" || n===(word_obj.length-1)) {
 /*
@@ -321,7 +323,9 @@ return;
 					y += lineHeight;
 				}
 				prev_width = 0;
+/*
 console.log('------ y ',y);
+*/
 			}else {
 				//console.log('testLine('+testLine.length+'):  ',testLine);
 				line = testLine;
@@ -329,7 +333,9 @@ console.log('------ y ',y);
 			prev_width = testWidth;
 			count++;
 		}
+/*
 console.log('line_count: ',line_count,' y: ',y);
+*/
 //console.log('=+-',line,': ',y,"\n",testWidth,' > ',maxWidth,"?",(testWidth > maxWidth?"TRUE":"FALSE"));
 		y= y - FS;//baseline correction - weird canvas stuff.  textBaseline is the consideration
  		//y=y+(context.textBaseline.toLowerCase()==='alphabetic'?FS + ((LH * FS) - FS):0);
@@ -358,10 +364,14 @@ ctx.lineWidth=1;
 
 		if(Math.floor(y)<maxHeight){//vert center
 			var diff_y=maxHeight-Math.floor(y);
+/*
 console.log('y:',y,"\n",'diff_y',diff_y,' vs FS ',FS);
+*/
 //return;
 			if(diff_y>FS){
+/*
 console.log('-diff_y',diff_y,' vs FS ',FS);
+*/
 				var old_style=context.fillStyle;
 				setCanvasDimensions(gWidth, gHeight);
 				context.drawImage(image, 0, 0);// Draw the image
@@ -376,14 +386,18 @@ console.log('-diff_y',diff_y,' vs FS ',FS);
 			textIn=check_strip_last(textIn,word_obj[word_obj.length-1].str).trim()+"\u2026";
 			FS=8;
 		}
+/*
 console.log("\n",'============y>maxHeight ',y,'>',maxHeight,' ---- FS: ',FS,' ---- lineHeight: ',lineHeight,'========================',"\n");
+*/
 //return;
 		if(Math.floor(y)>maxHeight && (Math.floor(y)-maxHeight)>lineHeight && FS>=8){
 			var new_LH=LH-1,
 				new_FS=Math.round(FS*0.75);
 			if(new_LH>1){new_LH=1.05;}
 			else{new_LH=1+(new_LH*0.75);}
+/*
 console.log('new_LH',new_LH,'new_FS',new_FS);
+*/
 
 			var old_style=context.fillStyle;
 			setCanvasDimensions(gWidth, gHeight);//redraw
@@ -419,7 +433,9 @@ console.log('new_LH',new_LH,'new_FS',new_FS);
 			fontWeight=gFontWeight;
 		context.font = fontWeight + fontSize + 'px Libre Baskerville';
 		context.textAlign = gFontAlign;
+/*
 console.log('========== top: ',top,'================');
+*/
 		// Draw them!
 		//drawText(top, 'top');
 		//drawText(bottom, 'bottom');
@@ -427,7 +443,9 @@ console.log('========== top: ',top,'================');
 		gInitX=365;
 		gInitY=25-2;
 		gInitY=42-2;
+/*
 console.log('gInitY',gInitY,'gLineHeight' ,gLineHeight);
+*/
 		wrapText(gFontSize,gLineHeight,top,gInitX,gInitY);
 	};
 
