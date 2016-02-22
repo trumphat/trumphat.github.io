@@ -29,7 +29,8 @@
   .text-area-holder{
     padding:0.92em 0.72em;
     box-sizing: border-box;/**/
-    width: calc(100% - 1% - 1% - 1% - 1%);
+    /*width: 94%;*/
+    /*width: calc(100% - 1% - 1% - 1% - 1%);*/
     right: 1%;
     left: 1%;
     top: 1%;
@@ -90,7 +91,7 @@
     position:fixed;
     bottom:0px;
     left:0px;
-    z-index:9001;
+    z-index:9000;
     background-color:#ffffff;
     opacity:0.6;
   }
@@ -126,7 +127,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    z-index:9000;
+    z-index:9001;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,6 +171,11 @@
     -webkit-transition: width 0.5s, height 0.5s, background-color 0.5s, -webkit-transform 0.5s, left 0.5s, right 0.5s;
     transition: width 0.5s, height 0.5s, background-color 0.5s, transform 0.5s, left 0.5s, right 0.5s;
   }
+  #canvas{
+
+    -webkit-transition: left 0.5s, right 0.5s;
+    transition: left 0.5s, right 0.5s;
+}
   .canvas-wrapper{left:33%;right:0px;}
   .textarea-wrapper{left:0%;right:66.6%;max-height:498px;}
   html.input-mode .textarea-wrapper{left:0px;right:50%;}
@@ -177,17 +183,74 @@
   /*html.input-mode .text-area-holder{margin:0px 0px 0px auto;}*/
   html.input-mode #canvas {
     display: block;
-    margin: 0px auto;
     right: 0px;
     position: absolute;
   }
-  @media only screen and (min-height: 498px){/* 498px + 38px */
-    .credits{top:460px;}
+  @media only screen and (orientation: portrait) and (min-height: 498px){/* 498px + 38px */
+    .credits{top:514px;}
     .textarea-wrapper, .canvas-wrapper{bottom:44px;}
+    .credits p{float:left;margin-right:3.23rem;}
   }
   @media only screen and (max-width: 700px){
+  	html.input-mode #canvas{right:100.5%;}/*subtract the diff 106 - 95%*/
+  	#canvas{
+  		float:none;
+    	position: relative !important;
+    	right: 63.5%;/*subtract the diff 67.5% - 59.5% */
+    	margin:0px;
+	}
+  }
+  @media only screen and (max-width: 650px){
+  	html.input-mode #canvas{right: 113.75%;}/*subtract the diff 109% - 118%*/
+  	#canvas{
+    	right: 72.75%;/*subtract the diff 78% - 67.5% */
+	}
+  }
+  @media only screen and (max-width: 600px){
+  	html.input-mode #canvas{right: 128.75%;}/*subtract the diff 135% - 122.5% */
+  	#canvas{
+    	right: 84%;/*subtract the diff 89.5% - 78.5% */
+	}
+  }
+  @media only screen and (max-width: 550px){
+  	html.input-mode #canvas{right: 144.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 90.25%;/*subtract the diff 78.5% - 102% */
+	}
   }
   @media only screen and (max-width: 500px){
+  	html.input-mode #canvas{right: 163.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 108.25%;/*subtract the diff 78.5% - 102% */
+	}
+  }
+  @media only screen and (max-width: 450px){
+  	html.input-mode #canvas{right: 190.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 132.75%;/*subtract the diff 78.5% - 102% */
+	}
+  }
+  @media only screen and (max-width: 400px){
+  	html.input-mode #canvas{right: 221.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 152.75%;/*subtract the diff 78.5% - 102% */
+	}
+  }
+  @media only screen and (max-width: 350px){
+  	html.input-mode #canvas{right: 269.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 185.75%;/*subtract the diff 78.5% - 102% */
+	}
   }
   @media only screen and (max-width: 300px){
+  	html.input-mode #canvas{right: 330.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 230.75%;/*subtract the diff 78.5% - 102% */
+	}
+  }
+  @media only screen and (max-width: 250px){
+  	html.input-mode #canvas{right: 296.75%;}/*subtract the diff 137.75% - 153.75% */
+  	#canvas{
+    	right: 204.75%;/*subtract the diff 78.5% - 102% */
+	}
   }
