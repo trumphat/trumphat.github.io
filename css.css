@@ -117,9 +117,6 @@
     text-align:right;
     margin: 0.23rem auto;
   }
-.ui-msg {
-display: none;	
-}
   .ui-msg p{
     background-color: rgba(60,60,60,0.4);
     border-radius: 50%;
@@ -147,7 +144,7 @@ display: none;
     right: 0px;
     bottom: 0px;
     z-index:9001;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
   }
