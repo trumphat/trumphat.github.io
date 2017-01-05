@@ -1,4 +1,18 @@
+.buy {
+	display: block;
+    position: fixed;
+    width: 100%;
+    background: #c0564f;
+    color: #fff;
+    z-index: 1000;
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
 
+.buy:hover {
+	background-color: #af4f47;
+}
 
   html {
     font-size: 10px;
@@ -7,6 +21,7 @@
   body {
     font-family: sans-serif;
     text-align: center;
+	  padding-top: 30px;
   }
 
   html,  body {padding:0px;margin:0px;width:100%;height:100%;}
