@@ -1,211 +1,257 @@
-<!DOCTYPE html>
 <html>
 <head>
-
-  <title>Donald Trump Hat Generator</title>
-
-  <!-- Demo CSS -->
-  <link href="css.css" rel="stylesheet" type="text/css" />
-
-  <!-- Meme script -->
-  <script src="meme.js"></script>
-
-  <!-- Demo scripts -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script>/* jQuery-FontSpy.js v3.0.0
- * https://github.com/patrickmarabeas/jQuery-FontSpy.js
- *
- * Copyright 2013, Patrick Marabeas http://pulse-dev.com
- * Released under the MIT license
- * http://opensource.org/licenses/mit-license.php
- *
- * Date: 02/11/2015
- */
-
-(function( w, $ ) {
-
-  fontSpy = function  ( fontName, conf ) {
-    var $html = $('html'),
-        $body = $('body'),
-        fontFamilyName = fontName;
-
-        // Throw error if fontName is not a string or not is left as an empty string
-        if (typeof fontFamilyName !== 'string' || fontFamilyName === '') {
-          throw 'A valid fontName is required. fontName must be a string and must not be an empty string.';
-        }
-
-    var defaults = {
-        font: fontFamilyName,
-        fontClass: fontFamilyName.toLowerCase().replace( /\s/g, '' ),
-        success: function() {},
-        failure: function() {},
-        testFont: 'Courier New',
-        testString: 'QW@HhsXJ',
-        glyphs: '',
-        delay: 50,
-        timeOut: 1000,
-        callback: $.noop
-    };
-
-    var config = $.extend( defaults, conf );
-
-    var $tester = $('<span>' + config.testString+config.glyphs + '</span>')
-        .css('position', 'absolute')
-        .css('top', '-9999px')
-        .css('left', '-9999px')
-        .css('visibility', 'hidden')
-        .css('fontFamily', config.testFont)
-        .css('fontSize', '250px');
-
-    $body.append($tester);
-
-    var fallbackFontWidth = $tester.outerWidth();
-
-    $tester.css('fontFamily', config.font + ',' + config.testFont);
-
-    var failure = function () {
-      $html.addClass("no-"+config.fontClass);
-      if( config && config.failure ) {
-        config.failure();
-      }
-      config.callback(new Error('FontSpy timeout'));
-      $tester.remove();
-    };
-
-    var success = function () {
-      config.callback();
-      $html.addClass(config.fontClass);
-      if( config && config.success ) {
-        config.success();
-      }
-      $tester.remove();
-    };
-
-    var retry = function () {
-      setTimeout(checkFont, config.delay);
-      config.timeOut = config.timeOut - config.delay;
-    };
-
-    var checkFont = function () {
-      var loadedFontWidth = $tester.outerWidth();
-
-      if (fallbackFontWidth !== loadedFontWidth){
-        success();
-      } else if(config.timeOut < 0) {
-        failure();
-      } else {
-        retry();
-      }
-    }
-
-    checkFont();
-    }
-  })( this, jQuery );
-  $.fn.ready(function() {
-var preview_timeout_id=false;
-$(document).ready(function() {
-  $('html').addClass(('ontouchstart' in window || navigator.maxTouchPoints?'has-touch':'has-click'));
-  $('#all-line').on('focus',function(){
-    $('html').addClass('input-mode');
-  });
-  $('#all-line').on('blur',function(){
-    $('html').removeClass('input-mode');
-  });
-  $('.ui-msg').on('click',function(){
-    $('#all-line').focus();
-    $('#all-line').select();
-    $(this).remove();
-  });
-  fontSpy('Libre Baskerville', {    
-    success: function(){
-      Meme('donald_796.jpg', 'canvas');
-
-
-      $('button.save-btn').on('click',function(){
-        var canvas = $('#canvas')[0],
-            image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"),  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-            link = document.createElement('a'),/// create an "off-screen" anchor tag
-            e;
-
-        
-        link.download = "donald--"+$('#all-line').val().replace(/[\s\[\].,\/#!$%\^&\*;:{}=_`~]/gi,'-')+".png";/// the key here is to set the download attribute of the a tag
-
-        /// convert canvas content to data-uri for link. When download
-        /// attribute is set the content pointed to by link will be
-        /// pushed as "download" in HTML5 capable browsers
-        link.href = canvas.toDataURL();
-
-        /// create a "fake" click-event to trigger the download
-        if (document.createEvent) {
-
-            e = document.createEvent("MouseEvents");
-            e.initMouseEvent("click", true, true, window,
-                             0, 0, 0, 0, 0, false, false, false,
-                             false, 0, null);
-            link.dispatchEvent(e);
-        } else if (link.fireEvent) {
-
-            link.fireEvent("onclick");
-        }
-        ga('set', {
-          'dimension1': $('#all-line').val(),
-          'metric1': 1
-        });
-      });
-      $('#all-line').keyup(function() {
-        if(preview_timeout_id!==false){clearTimeout(preview_timeout_id);}
-        preview_timeout_id=setTimeout(function(){
-
-          //Meme('donald_796.jpg', 'canvas', $('#top-line').val().toUpperCase(), $('#bottom-line').val().toUpperCase());
-          Meme('donald_796.jpg', 'canvas', $('#all-line').val().toUpperCase());
-          //Meme('donald_796.jpg', 'canvas', $('#all-line').val());
-        },300);
-      });
-      setTimeout(function(){$('#all-line').keyup();},600);//initate! - for buggy loads
-      $('#all-line').keyup();//initate!
-    }
-  });
-
-});
-
-  });
-
+  <script>
+  /*
+   * TODO
+   *
+   * [-] Share on...
+   */
   </script>
+  <title>Donald Trump Hat Generator</title>
+  <style>
+  #popup {
+    display: none;
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    font-family: 'Helvetica';
+  }
+  #popup img {
+    width: 80%;
+    margin-top: 50px;
+  }
+  #popup h2 {
+    margin-top: 0;
+    color: #ed0000;
+    text-align: center;
+    font-family: 'Bitter', serif;
+  }
+  #popup p {
+    color: #999;
+    text-align: center
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    border-top: 5px solid #ed0000;
+  }
+  .out {
+    text-align: center;
+    color: #999;
+    font-family: Helvetica;
+    padding: 30px;
+  }
+  .out a {
+    color: #ed0000;
+    text-decoration: none;
+  }
+  .out a:hover {
+    color: #c50000;
+  }
+  .hat {
+      width: 550px;
+      height: 450px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: block;
+      margin: auto;
+      margin-bottom: 30px;
+      font-family: 'Bitter', serif;
+      color: #fff;
+      font-size: 37px;
+      line-height: 1.2em;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      font-weight: bold;
+      position: relative;
+      margin-top: 90px;
+  }
+  .hat img {
+    width: 100%;
+  }
+  .off {
+      color: #8c0909;
+      text-shadow: 0 0;
+  }
+  .hat-noun, .hat-adjective {
+      position: absolute;
+      width: 100%;
+      top: 118px;
+  }
+  .hat-adjective {
+      top: 167px;
+  }
 
-<!-- <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'> -->
-<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700|Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
+  #top {
+    background: #f9f9f9;
+    padding: 40px 20px 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 35px;
+    background: linear-gradient(#ed0000, #c50000);
+    border-radius: 5px;
+    color: #fff;
+    font-family: Helvetica;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 2px 2px 2px rgba(0,0,0, 0.05);
+    margin: 0 5px;
+    border: 1px solid #c50000;
+  }
+
+  .btn:hover {
+    box-shadow: 0 0 0 30px rgba(0,0,0,0.05) inset, 2px 2px 2px rgba(0,0,0, 0.05);
+  }
+
+  .btn-secondary {
+    background: linear-gradient(#fff, #eee);
+    border: 1px solid #ddd;
+    color: #888;
+    text-shadow: 0 0;
+    font-weight: 200;
+    color: #555;
+  }
+  .buttons {
+      position: absolute;
+      bottom: -20px;
+      width: 100%;
+      text-align: center;
+      left: 0;
+  }
+  #topper {
+    font-family: 'Bitter', serif;
+    font-size: 30px;
+    color: #333;
+  }
+  #topper input {
+    font-family: 'Bitter', serif;
+    font-size: 30px;
+    color: #333;
+    border: 1px solid #eee;
+    background: #fff;
+    width: 200px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    text-align: center;
+    margin: 0 10px;
+    border-radius: 3px;
+  }
+  #topper input:focus {
+    color: #ed0000;
+    outline: 0 none;
+    border: 1px solid #ed0000;
+  }
+
+  </style>
 </head>
-
 <body>
-  <a href="http://makehatsgreatagain.us" class="buy"><strong>Want this hat for real?</strong> Buy it now!</a>
-  
-  <a href="javascript:;" class="ui-msg"><div class="as-tbl"><p class="as-tcl"><span class="tap-msg">Tap</span><span class="click-msg">Click</span> to<br/>Customize</p></div></a>
+  <link href='https://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'/ >
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-  
-    <!-- <input id="top-line" placeholder="top line">
-    <input id="bottom-line" placeholder="bottom line"> -->
-    <main>
-     <section class="textarea-wrapper">
-        <div class="text-area-holder"><textarea id="all-line" placeholder="Enter Your Text">MAKE AMERICA 
-GREAT AGAIN</textarea>
-        </div>
-        <div class="save-button-wrapper"><button class="save-btn">Save</button></div>
-</section>
-      <section class="canvas-wrapper"><canvas id="canvas"></canvas></section>
-    </main>
-    <div class="credits">
-      <p>Original Image Credit by Rick Wilking / Reuters</p>
-      <p>Github Forked: <a href="https://github.com/BuddyMeme/Meme.js" target="_blank">Meme.js</a></p>
+  <div id="top">
+    <div id="topper">
+      MAKE
+      <input type="text" id="noun" value="AMERICA" placeholder="NOUN">
+      <input type="text" id="adjective" value="GREAT" placeholder="ADJECTIVE">
+      AGAIN
     </div>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-32916794-5', 'auto');
-  ga('send', 'pageview');
+    <div class="buttons">
+      <a href="#" class="btn btn-primary" id="buy"><strong>Buy</strong> this hat</a>
+      <a href="#" class="btn btn-secondary" id="download" download="hat.png">Download</a>
+      <!-- <a href="#">Share on...</a> -->
+    </div>
+  </div>
 
-</script>
+  <div class="hat-parent">
+  <div class="hat">
+    <img src="hat.png" />
+    <div class="hat-noun"><div>MAKE <span class="fill-noun off">NOUN</span></div></div>
+    <div class="hat-adjective"><div><span class="fill-adjective">GREAT</span> AGAIN</div></div>
+  </div>
+  </div>
+  <div class="out">
+    Created by <a href="http://makehatsgreatagain.us">Make Hats Great Again</a>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/jquery.lightbox_me.js?2"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/jquery.circletype/0.34/circletype.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+  <script>
+    keyup('noun');
+    keyup('adjective');
+
+    function keyup(type) {
+      $('#'+type).keyup(function() {
+        $('.hat-' + type).empty();
+
+        var $el;
+        if(type == 'noun') {
+          $el = $('<div>MAKE <span class="fill-noun off">NOUN</span>');
+        } else {
+          $el = $('<div><span class="fill-adjective">GREAT</span> AGAIN</div>');
+        }
+
+        $('.hat-' + type).append($el);
+
+        var edited = !($(this).val().trim() == '');
+
+        if(!edited) {
+          $('.fill-'+type, $el).text(type);
+        } else {
+          $('.fill-'+type, $el).text($(this).val());
+        }
+
+        $('.hat .hat-'+type+' div').circleType({radius: 524});
+
+        if(!edited) {
+          if(type == 'noun') {
+            $('span', $el).slice(5, 9).addClass('off');
+          } else {
+            $('span', $el).slice(0, 9).addClass('off');
+          }
+        };
+
+        var noun = $('#noun').val();
+        var adjective = $('#adjective').val();
+
+        $('#buy, .buy').attr('href', 'https://makehatsgreatagain.us/products/red-hat?t='+noun+'&a='+adjective);
+        html2canvas($('.hat-parent'), {
+          onrendered: function(canvas) {
+            $('#download').attr('href', canvas.toDataURL('image/png'));
+          },
+        });
+      }).blur(function() {
+        $(this).val($(this).val().toUpperCase().replace(/[^-_?!a-zA-Z0-9.@~#$%^&*'"+=<>()\s]/g, ''));
+        $(this).trigger('keyup');
+      });
+    }
+
+    $('#download').click(function() {
+      $('#popup').lightbox_me();
+    });
+
+    setTimeout(function() {
+      $('#noun').trigger('keyup');
+      $('#adjective').trigger('keyup');
+    }, 10);
+  </script>
+  <div id="popup">
+    <h2>Your Image Downloaded!</h2>
+    <p>Want to buy this hat for real?</p>
+    <a class="buy btn btn-primary" href="#">Buy Now</a>
+    <img src="https://cdn.shopify.com/s/files/1/1338/3105/t/2/assets/example2.jpg?813404663833800813">
+  </div>
 </body>
-</html>
